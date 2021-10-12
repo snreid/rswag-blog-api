@@ -1,3 +1,4 @@
+require 'rails_helper'
 require 'swagger_helper'
 
 RSpec.describe 'articles', type: :request do
@@ -5,6 +6,8 @@ RSpec.describe 'articles', type: :request do
   path '/articles' do
 
     get('list articles') do
+      let!(:article) { create(:article) }
+
       response(200, 'successful') do
 
         after do |example|
