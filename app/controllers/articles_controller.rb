@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[ show edit update destroy ]
+  before_action :set_article, only: %i[ show update destroy ]
 
   # GET /articles
   def index
@@ -13,10 +13,6 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
-  end
-
-  # GET /articles/1/edit
-  def edit
   end
 
   # POST /articles

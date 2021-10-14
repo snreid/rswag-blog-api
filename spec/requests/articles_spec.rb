@@ -1,70 +1,45 @@
 require 'rails_helper'
 require 'swagger_helper'
 
-RSpec.describe 'articles', type: :request do
+RSpec.describe 'articles', type: :request, document_response: true do
 
-  path '/articles' do
-
+  path '/articles', document_response: true do
     get('list articles') do
       let!(:article) { create(:article) }
 
       response(200, 'successful') do
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
+        run_test! do |response|
+          response = JSON.parse(response.body)
+          expect(response.first["id"]).to eq(article.id)
+          expect(response.first["title"]).to eq(article.title)
         end
-        run_test!
       end
     end
 
     post('create article') do
-      response(200, 'successful') do
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
+      consumes "application/json"
+      produces "application/json"
+      parameter name: :params, in: :body, schema: {
+        type: :object,
+        properties: {
+          article: {
+            type: :object,
+            properties: {
+              author: { type: :string },
+              title: { type: :string },
+              body: { type: :string }
             }
           }
-        end
-        run_test!
-      end
-    end
-  end
+        } 
+      }
 
-  path '/articles/new' do
-
-    get('new article') do
-      response(200, 'successful') do
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
-        run_test!
-      end
-    end
-  end
-
-  path '/articles/{id}/edit' do
-    # You'll want to customize the parameter types...
-    parameter name: 'id', in: :path, type: :string, description: 'id'
-
-    get('edit article') do
-      response(200, 'successful') do
-        let(:id) { '123' }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
+      response(201, 'successful') do
+        let(:params) do
+          {
+            article: {
+              author: "Test Author",
+              title: "Title",
+              body: "Lorem Ipsum Body."
             }
           }
         end
@@ -78,61 +53,84 @@ RSpec.describe 'articles', type: :request do
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
     get('show article') do
+      let!(:article) { create(:article) }
       response(200, 'successful') do
-        let(:id) { '123' }
+        let(:id) { article.id }
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
         run_test!
       end
     end
 
     patch('update article') do
-      response(200, 'successful') do
-        let(:id) { '123' }
+      consumes "application/json"
+      produces "application/json"
+      parameter name: :params, in: :body, schema: {
+        type: :object,
+        properties: {
+          article: {
+            type: :object,
+            properties: {
+              author: { type: :string },
+              title: { type: :string },
+              body: { type: :string }
+            }
+          }
+        },  
+      }
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
+      let!(:article) { create(:article) }
+      response(200, 'successful') do
+        let(:id) { article.id }
+        let(:params) do
+          {
+            article: {
+              title: "Title"
             }
           }
         end
+
         run_test!
       end
     end
 
     put('update article') do
-      response(200, 'successful') do
-        let(:id) { '123' }
+      consumes "application/json"
+      produces "application/json"
+      parameter name: :params, in: :body, schema: {
+        type: :object,
+        properties: {
+          article: {
+            type: :object,
+            properties: {
+              author: { type: :string },
+              title: { type: :string },
+              body: { type: :string }
+            }
+          }
+        },  
+      }
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
+
+      let!(:article) { create(:article) }
+      response(200, 'successful') do
+        let(:id) { article.id }
+        let(:params) do
+          {
+            article: {
+              title: "Title"
             }
           }
         end
+
         run_test!
       end
     end
 
     delete('delete article') do
-      response(200, 'successful') do
-        let(:id) { '123' }
+      let!(:article) { create(:article) }
+      let(:id) { article.id }
 
-        after do |example|
-          example.metadata[:response][:content] = {
-            'application/json' => {
-              example: JSON.parse(response.body, symbolize_names: true)
-            }
-          }
-        end
+      response(204, 'no content') do
         run_test!
       end
     end
