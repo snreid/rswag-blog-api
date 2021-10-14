@@ -1,10 +1,10 @@
-require 'rails_helper'
 require 'swagger_helper'
 
 RSpec.describe 'articles', type: :request, document_response: true do
 
-  path '/articles', document_response: true do
+  path '/articles' do
     get('list articles') do
+      produces "application/json"
       let!(:article) { create(:article) }
 
       response(200, 'successful') do
@@ -53,7 +53,9 @@ RSpec.describe 'articles', type: :request, document_response: true do
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
     get('show article') do
+      produces "application/json"
       let!(:article) { create(:article) }
+
       response(200, 'successful') do
         let(:id) { article.id }
 
@@ -127,6 +129,7 @@ RSpec.describe 'articles', type: :request, document_response: true do
     end
 
     delete('delete article') do
+      produces "application/json"
       let!(:article) { create(:article) }
       let(:id) { article.id }
 

@@ -21,7 +21,22 @@
         "summary": "list articles",
         "responses": {
           "200": {
-            "description": "successful"
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "example": [
+                  {
+                    "id": 1,
+                    "author": "Vulputate Ut",
+                    "title": "Vulputate Mi Sit 1",
+                    "body": " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut consequat semper viverra nam libero justo laoreet sit. Viverra suspendisse potenti nullam ac. Enim praesent elementum facilisis leo vel fringilla est ullamcorper eget. Ipsum dolor sit amet consectetur.",
+                    "created_at": "2021-10-14T19:25:56.477Z",
+                    "updated_at": "2021-10-14T19:25:56.477Z",
+                    "url": "http://www.example.com/articles/1"
+                  }
+                ]
+              }
+            }
           }
         }
       },
@@ -40,8 +55,8 @@
                   "author": "Test Author",
                   "title": "Title",
                   "body": "Lorem Ipsum Body.",
-                  "created_at": "2021-10-14T18:20:48.610Z",
-                  "updated_at": "2021-10-14T18:20:48.610Z",
+                  "created_at": "2021-10-14T19:25:56.515Z",
+                  "updated_at": "2021-10-14T19:25:56.515Z",
                   "url": "http://www.example.com/articles/1"
                 }
               }
@@ -91,7 +106,20 @@
         "summary": "show article",
         "responses": {
           "200": {
-            "description": "successful"
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "example": {
+                  "id": 1,
+                  "author": "Vulputate Ut",
+                  "title": "Vulputate Mi Sit 2",
+                  "body": " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut consequat semper viverra nam libero justo laoreet sit. Viverra suspendisse potenti nullam ac. Enim praesent elementum facilisis leo vel fringilla est ullamcorper eget. Ipsum dolor sit amet consectetur.",
+                  "created_at": "2021-10-14T19:25:56.520Z",
+                  "updated_at": "2021-10-14T19:25:56.520Z",
+                  "url": "http://www.example.com/articles/1"
+                }
+              }
+            }
           }
         }
       },
@@ -110,8 +138,8 @@
                   "author": "Vulputate Ut",
                   "title": "Title",
                   "body": " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut consequat semper viverra nam libero justo laoreet sit. Viverra suspendisse potenti nullam ac. Enim praesent elementum facilisis leo vel fringilla est ullamcorper eget. Ipsum dolor sit amet consectetur.",
-                  "created_at": "2021-10-14T18:20:48.624Z",
-                  "updated_at": "2021-10-14T18:20:48.631Z",
+                  "created_at": "2021-10-14T19:25:56.530Z",
+                  "updated_at": "2021-10-14T19:25:56.537Z",
                   "url": "http://www.example.com/articles/1"
                 }
               }
@@ -159,8 +187,8 @@
                   "author": "Vulputate Ut",
                   "title": "Title",
                   "body": " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut consequat semper viverra nam libero justo laoreet sit. Viverra suspendisse potenti nullam ac. Enim praesent elementum facilisis leo vel fringilla est ullamcorper eget. Ipsum dolor sit amet consectetur.",
-                  "created_at": "2021-10-14T18:20:48.634Z",
-                  "updated_at": "2021-10-14T18:20:48.640Z",
+                  "created_at": "2021-10-14T19:25:56.540Z",
+                  "updated_at": "2021-10-14T19:25:56.547Z",
                   "url": "http://www.example.com/articles/1"
                 }
               }
@@ -197,7 +225,11 @@
         "summary": "delete article",
         "responses": {
           "204": {
-            "description": "no content"
+            "description": "no content",
+            "content": {
+              "application/json": {
+              }
+            }
           }
         }
       }
