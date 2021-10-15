@@ -1,26 +1,15 @@
 # rswag-blog-api
 A simple blog api to demo the wonders of Rswag
+
 # README
+This setup assumes you're already familiar with Ruby on Rails environments.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Steps to setup this app:
 
-Things you may want to cover:
+1. Clone this repo to your local environment
+2. `bundle install`
+3. `rails db:migrate`
+4. `rails server`
+5. Navigate to http://localhost:3000/api-docs/index.html
+6. Profit
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
