@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_article, only: %i[ show update destroy ]
 
   # GET /articles
